@@ -11,6 +11,7 @@ public class Main {
 
     public static String hacerDirDoble() {
         String impresion="";
+        String impresion2="";
 
         try {
             ProcessBuilder builder = new ProcessBuilder(
@@ -20,27 +21,29 @@ public class Main {
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;
             while ((line = r.readLine()) != null) {
-                System.out.println(line);
+
+                impresion += line+"\n";
+
                 if(line.contains("<DIR>"))
-                    repetirDir(line.substring(36),impresion);
+                    impresion2+=repetirDir(line.substring(36));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return impresion;
+        return impresion+impresion2;
     }
 
-    public static void repetirDir(String nombre,String impresion) throws IOException {
+    public static String repetirDir(String nombre) throws IOException {
         String cadena;
-        //StringBuilder devolucion= new StringBuilder();
-        ProcessBuilder builder1 = new ProcessBuilder(
+        String impresion2="";
+        ProcessBuilder builder2 = new ProcessBuilder(
                 "cmd.exe", "/c", "cd C:\\"+nombre+" && dir");
-        builder1.redirectErrorStream(true);
-        Process p1 = builder1.start();
-        BufferedReader r = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-        while ((cadena = r.readLine()) != null) {
-            impresion+=cadena+"\n";
-        }
+        builder2.redirectErrorStream(true);
+        Process p2 = builder2.start();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p2.getInputStream()));
+        while ((cadena = r.readLine()) != null)
+            impresion2+=cadena+"\n";
+        return impresion2;
     }
 }
