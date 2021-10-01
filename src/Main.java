@@ -8,6 +8,7 @@ public class Main {
         System.out.println(hacerDirDoble());
 
     }
+    //¿Por qué StringBuilder? Era una opción que ofrecía IntelliJ. La utilicé para conocer otra clase distinta a String
     //Opción A: la función hacerDirDoble no imprime nada por pantalla. Obliga a devolver dos String concatenados.
     //Opción B: la función hacerDirDoble imprime la primera parte por pantalla y llama a la función repetirDir
     public static String hacerDirDoble() {
